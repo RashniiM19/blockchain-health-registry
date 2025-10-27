@@ -1,0 +1,23 @@
+#pragma version 5
+txn ApplicationArgs 0
+byte "add"
+==
+bnz add
+txn ApplicationArgs 0
+byte "get"
+==
+bnz get
+int 0
+return
+
+add:
+txn ApplicationArgs 1
+txn ApplicationArgs 2
+app_global_put
+int 1
+return
+
+get:
+txn ApplicationArgs 1
+app_global_get
+return
